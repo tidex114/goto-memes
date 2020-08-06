@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<style>
+    body {
+        margin: 0;
+        font-family: "Lato", sans-serif;
+        color: white;
+        font-weight: bold;
+        background-color: #ffffff;
+        background-image: linear-gradient(to bottom right,
+        rgb(133, 19, 194),
+        rgb(155, 23, 167),
+        rgb(178, 26, 141),
+        rgb(200, 30, 114),
+        rgb(223, 33, 88),
+        rgb(245, 37, 61),
+        rgb(236, 50, 86),
+        rgb(227, 62, 110),
+        rgb(218, 75, 135),
+        rgb(208, 88, 160),
+        rgb(199, 100, 184),
+        rgb(190, 113, 209));
+    }
+
+
+    .sidebar {
+        margin: 0;
+        padding: 0;
+        width: 200px;
+        background-color: #ffffff;
+        position: fixed;
+        height: 100%;
+        overflow: auto;
+
+    }
+
+    .sidebar a {
+        display: block;
+        color: black;
+        padding: 16px;
+        text-decoration: none;
+    }
+
+    .sidebar a.active {
+        background-color: #20cb27;
+        color: rgba(123, 33, 33, 0.36);
+    }
+
+    .sidebar a:hover:not(.active) {
+        background-color: #e5e5e5;
+        color: #1fa1f8;
+    }
+
+    div.content {
+        margin-left: 200px;
+        padding: 1px 16px;
+        height: 1000px;
+    }
+
+    @media screen and (max-width: 700px) {
+        .sidebar {
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+
+        .sidebar a {
+            float: left;
+        }
+
+        div.content {
+            margin-left: 0;
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        .sidebar a {
+            text-align: center;
+            float: none;
+        }
+    }
+</style>
+<div class="sidebar">
+    <a href="/">Главная</a>
+    <a href="/add">Добавление</a>
+    <a href="/register">Регистрация</a>
+    <a href="/login">Вход</a>
+    <a href="/logout">Выход</a>
+</div>
+
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>

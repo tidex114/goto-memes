@@ -1,0 +1,119 @@
+{% extends 'shablon.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+
+</head>
+<body>
+{% if session['logged'] == True %}
+<form action="/search" method="POST">
+    <p style="text-align: center">
+        <input name="search"/>
+            <button class="iksweb">Поиск</button>
+    </p>
+    <style>
+        /* Стили кнопки */
+        .iksweb {
+            display: inline-block;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            padding: 6px 4px;
+            color: #000000;
+            background: #ffffff;
+            border-radius: 60px;
+            border: 2px solid #ffffff;
+            font-weight: bold;
+        }
+
+        .iksweb:hover {
+            background: #e9eef2;
+            color: #3d3d3d;
+            border: 2px solid #e9eef2;
+            transition: all 0.4s ease;
+        }
+    </style>
+
+</form>
+{% for meme in memes %}
+<p>
+    <img src={{meme[1]}} width="200px" height="200px"/> <br>Описание: {{meme[2]}} <br>
+    Добавлен: {{meme[4]}}
+</p>
+{% if session['login'] == meme[4] %}
+<style>
+    /* Стили кнопки */
+    .iksweb {
+        display: inline-block;
+        cursor: pointer;
+        font-size: 14px;
+        text-decoration: none;
+        padding: 6px 4px;
+        color: #000000;
+        background: #ffffff;
+        border-radius: 60px;
+        border: 2px solid #ffffff;
+        font-weight: bold;
+    }
+
+    .iksweb:hover {
+        background: #e9eef2;
+        color: #3d3d3d;
+        border: 2px solid #e9eef2;
+        transition: all 0.4s ease;
+    }
+</style>
+
+<a class="iksweb" href="/delete?id={{ meme[0] }}" title="Удалить ">Удалить запись</a>
+{% endif %}
+<form action="/add_comment?memeID={{meme[0]}}" method="POST">
+    <p style="text-align: left">
+        Написать коммент: <input name="newcomm"/>
+        <button>Отправить</button>
+    </p>
+    <center>
+
+    </center>
+</form>
+{% for comment in comments %}
+{% if comment[2] == meme[0] %}
+<p>{{comment[3]}}: {{comment[1]}}
+    {% if session['login'] == comment[3] %}
+    <style>
+        /* Стили кнопки */
+        .iksweb {
+            display: inline-block;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            padding: 10px 15px;
+            color: #000000;
+            background: #ffffff;
+            border-radius: 60px;
+            border: 2px solid #ffffff;
+            font-weight: bold;
+        }
+
+        .iksweb:hover {
+            background: #e9eef2;
+            color: #3d3d3d;
+            border: 2px solid #e9eef2;
+            transition: all 0.4s ease;
+        }
+    </style>
+
+    <a class="iksweb" href="/delete_comment?id={{ comment[0] }}" title="Удалить комментарий">Удалить</a>
+</p>
+
+{% endif %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% else %}
+<h1> Вы не вошли! </h1>
+{% endif %}
+</body>
+</html>
+
+{% endblock %}

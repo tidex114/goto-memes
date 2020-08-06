@@ -1,0 +1,48 @@
+{% extends 'shablon.html' %}
+
+{% block title %}Добавление{% endblock %}
+
+{% block content %}
+{% if session['logged'] == True %}
+<h1 style="text-align: center">Добавление нового мема</h1>
+
+
+<form action="/add?userID = {{session.id}}" method="POST" >
+    <p style="text-align: center">
+        URL мема <input name="url"/>
+    </p>
+
+    <p style="text-align: center">
+        Описание мема <input name="descr"/>
+    </p>
+    <center>
+        <button class="iksweb">Добавить</button>
+    </center>
+    <style>
+        /* Стили кнопки */
+        .iksweb {
+            display: inline-block;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            padding: 6px 4px;
+            color: #000000;
+            background: #ffffff;
+            border-radius: 60px;
+            border: 2px solid #ffffff;
+            font-weight: bold;
+        }
+
+        .iksweb:hover {
+            background: #e9eef2;
+            color: #3d3d3d;
+            border: 2px solid #e9eef2;
+            transition: all 0.4s ease;
+        }
+    </style>
+
+</form>
+{% else %}
+<h1> Вы не вошли!</h1>
+{% endif %}
+{% endblock %}

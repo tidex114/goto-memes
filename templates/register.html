@@ -1,0 +1,46 @@
+{% extends 'shablon.html' %}
+
+{% block title %}Добавление{% endblock %}
+
+{% block content %}
+
+<h1 style="text-align: center">Регистрация</h1>
+
+
+<form action="/register" method="POST" >
+    <p style="text-align: center">
+        Login: <input name="login"/>
+    </p>
+
+    <p style="text-align: center">
+        Password <input name="pass"/>
+    </p>
+    <center>
+        <style>
+        /* Стили кнопки */
+        .iksweb {
+            display: inline-block;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            padding: 7px 15px;
+            color: #000000;
+            background: #ffffff;
+            border-radius: 60px;
+            border: 2px solid #ffffff;
+            font-weight: bold;
+        }
+
+        .iksweb:hover {
+            background: #e9eef2;
+            color: #3d3d3d;
+            border: 2px solid #e9eef2;
+            transition: all 0.4s ease;
+        }
+    </style>
+        <button class="iksweb">Зарегистрироваться</button>
+    </center>
+
+</form>
+
+{% endblock %}
